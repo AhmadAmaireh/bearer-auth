@@ -3,11 +3,8 @@
 const express = require('express');
 const authRouter = express.Router();
 
-// const basicAuth = require('../middleware/basic.js');
 const basicAuth = require('../middleware/basic');
-// const bearerAuth = require('../middleware/bearer.js');
 const bearerAuth = require('../middleware/bearer');
-// console.log(basicAuth);
 const {
   handleSignin,
   handleSignup,
