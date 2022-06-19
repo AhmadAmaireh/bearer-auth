@@ -15,12 +15,10 @@ let accessToken = null;
 
 beforeAll(async () => {
   await db.sync();
-  // jest.useFakeTimers()
-  // jest.setTimeout(10000)
+  
 });
 afterAll(async () => {
   await db.drop();
-  // jest.clearAllTimers()
 
 });
 
@@ -53,18 +51,15 @@ describe('Auth Router', () => {
   it('3 Can signin with bearer auth token', async () => {
     let { username, password } = userData.testUser;
 
-    // First, use basic to login to get a token
     const response = await mockRequest.post('/signin')
       .auth(username, password);
 
     accessToken = response.body.token;
 
-    // First, use basic to login to get a token
     const bearerResponse = await mockRequest
       .get('/users')
       .set('Authorization', `Bearer ${accessToken}`);
 
-    // Not checking the value of the response, only that we "got in"
     expect(bearerResponse.status).toBe(200);
   });
 
@@ -94,12 +89,10 @@ describe('Auth Router', () => {
 
   it('6 bearer fails with an invalid token', async () => {
 
-    // First, use basic to login to get a token
     const response = await mockRequest.get('/users')
       .set('Authorization', `Bearer foobar`)
     const userList = response.body;
 
-    // Not checking the value of the response, only that we "got in"
     expect(response.status).toBe(403);
     expect(response.text).toEqual("Invalid Login");
     expect(userList.length).toBeFalsy();
@@ -119,7 +112,6 @@ describe('Auth Router', () => {
     const validToken='dsugcsjmhtcvbmjhxj2hmgv mahgv'
     const response =await  mockRequest.get('/secret')
       .set('Authorization', `x ${validToken}`);
-      // console.log("gggggggggggggggggggggggggggggg",response);
 
     expect(response.status).toBe(403);
     expect(response.text).toEqual("Invalid Login");

@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/AhmadAmaireh/bearer-auth#readme",
   "dependencies": {
+    "base-64": "^1.0.0",
     "basic-64": "^0.0.7",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
