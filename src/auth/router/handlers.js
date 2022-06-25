@@ -2,14 +2,12 @@
 
 const {
   users
-} = require('../models/index');
+} = require('../models/index.js');
 
 async function handleSignup(req, res, next) {
   try {
     users.beforeCreate(req.body.password).then(async(hashedPass) => {
-      
       let userRecord = await users.create({username:req.body.username,password:hashedPass});
-     
       const output = {
         user: userRecord,
         token: userRecord.token
@@ -23,9 +21,7 @@ async function handleSignup(req, res, next) {
     next(e);
   }
 }
-
 async function handleSignin(req, res, next) {
-  
   try {
     const user = {
       user: req.user,
@@ -40,7 +36,7 @@ async function handleSignin(req, res, next) {
 async function handleGetUsers(req, res, next) {
   try {
     let come=req.user;
-    res.status(200).json(req.user);
+    res.status(201).json(req.user);
   } catch (e) {
     console.error(e);
     next(e);

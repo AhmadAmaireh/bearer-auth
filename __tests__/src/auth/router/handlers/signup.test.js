@@ -2,8 +2,8 @@
 
 process.env.SECRET = "TEST_SECRET";
 
-const { db } = require('../../../src/auth/models/index');
-const { handleSignup } = require('../../../src/auth/router/handlers');
+const { db } = require('../../../../../src/auth/models/index');
+const { handleSignup } = require('../../../../../src/auth/router/handlers');
 
 beforeAll(async () => {
   await db.sync();
@@ -40,7 +40,7 @@ describe('testing the Signup Handler', () => {
     );
   });
 
-  test.skip('Should call the error handler if no body attached to the request the on the request body', async () => {
+  test('Should call the error handler if no body attached to the request the on the request body', async () => {
     let req = {};
     jest.clearAllMocks();
 
