@@ -3,7 +3,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userSchema = (sequelize, DataTypes) => {
-  const users = sequelize.define('ah', {
+  const users = sequelize.define('postgres', {
     username: {
       type: DataTypes.STRING,
       allowNull: false

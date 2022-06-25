@@ -2,8 +2,8 @@
 
 process.env.SECRET = "TEST_SECRET";
 
-const { db, users } = require('../../../src/auth/models');
-const { handleSignin } = require('../../../src/auth/router/handlers.js');
+const { db, users } = require('../../../../../src/auth/models');
+const { handleSignin } = require('../../../../../src/auth/router/handlers.js');
 
 beforeAll(async () => {
   await db.sync();
@@ -32,17 +32,29 @@ describe('Testing the signin handler', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         user: expect.objectContaining({
+          updatedAt:expect.any(Date),
+          id:expect.any(Number),
           username: expect.any(String),
           password: expect.any(String),
           token: expect.any(String),
-          createdAt: expect.any(Date),
-          updatedAt:expect.any(Date),
-          id:expect.any(Number)
+          createdAt: expect.any(Date)
         }),
-        // token: expect.any(String),
       })
     );
   });
+//   await handleSignin(req, res, next);
+//   expect(res.status).toHaveBeenCalledWith(200);
+//   expect(res.json).toHaveBeenCalledWith(
+//     expect.objectContaining({
+//       user: expect.objectContaining({
+//         username: expect.any(String),
+//         password: expect.any(String),
+//         token: expect.any(String),
+//       }),
+//       token: expect.any(String),
+//     })
+//   );
+// });
 
   test('Should trigger error handler when no user is present on the request', async () => {
     let req = {};

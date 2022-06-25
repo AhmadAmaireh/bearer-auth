@@ -3,8 +3,8 @@
 process.env.SECRET = "TEST_SECRET";
 
 const base64 = require('base-64');
-const middleware = require('../../src/auth/middleware/basic');
-const { db, users } = require('../../src/auth/models/index');
+const middleware = require('../../../../src/auth/middleware/basic');
+const { db, users } = require('../../../../src/auth/models/index');
 
 let userInfo = {
   admin: { username: 'admin-basic', password: 'password' },
